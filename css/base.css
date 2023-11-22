@@ -6785,7 +6785,7 @@ textarea.form-control-lg {
 }
 
 .fixed-top {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   right: 0;
   left: 0;
@@ -10912,7 +10912,7 @@ p {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     border: none;
-    background-color: transparent;
+    background-color: #babbbc;
     transition: padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
   }
   #mainNav .navbar-brand {

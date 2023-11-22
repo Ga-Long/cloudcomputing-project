@@ -8091,7 +8091,7 @@ textarea.form-control-lg {
 
 .text-muted {
   --bs-text-opacity: 1;
-  color: #6c757d !important;
+  color: #E1E1E1 !important;
 }
 
 .text-black-50 {
@@ -10843,7 +10843,7 @@ p {
 .page-section h2.section-heading, .page-section .section-heading.h2 {
   font-size: 2.5rem;
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 4rem;
 }
 .page-section h3.section-subheading, .page-section .section-subheading.h3 {
   font-size: 1rem;
@@ -10971,7 +10971,7 @@ header.masthead .masthead-heading {
 @media (min-width: 768px) {
   header.masthead {
     padding-top: 17rem;
-    padding-bottom: 12.5rem;
+    padding-bottom: 22.5rem;
   }
   header.masthead .masthead-subheading {
     font-size: 2.25rem;
@@ -10986,6 +10986,33 @@ header.masthead .masthead-heading {
     margin-bottom: 2rem;
   }
 }
+/*service*/
+.introduce-section {
+  background-image: url('../assets/img/introduce/cloud2.jpeg'); /* 이미지 파일의 경로로 변경하세요 */
+  background-size: cover; /* 화면에 꽉 차도록 이미지 크기 조절 */
+  background-position: center; /* 이미지를 가운데로 정렬 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 없음 */
+  color: #ffffff; /* 텍스트 색상을 이미지와 대조되도록 설정 */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* advamtage */
+.advantage-section {
+  background-image: url('../assets/img/cloud2.jpg'); /* 이미지 파일의 경로로 변경하세요 */
+  background-size: cover; /* 화면에 꽉 차도록 이미지 크기 조절 */
+  background-position: center; /* 이미지를 가운데로 정렬 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 없음 */
+  color: #ffffff; /* 텍스트 색상을 이미지와 대조되도록 설정 */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 #portfolio .portfolio-item {
   max-width: 26rem;
   margin-left: auto;

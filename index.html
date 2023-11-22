@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Cloud Computing</title>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-inner">
+            <div class="hero-title">
+              <h1 class="text-light title font-2">Cloud Computing</h1>
+              <p class="text-capitalize text-light">2091082 이가현</p>
+            </div>
+            <a href="#" class="sd">Scroll Down</a>
+        </div>
+      </div>
+      <div class="content clearfix">
+        <div class="container" style="padding-top: 60px">
+          <div class="row">
+            <div class="col-md-5">
+              <h2 class="text-uppercase">rame ipsum</h2>
+              <p class="font-alt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui voluptatibus molestia!</p>
+            </div>
+            <div class="col-md-7">
+              <p style="padding-top: 47px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam earum eos corporis totam vel, eaque sapiente officiis sint culpa inventore blanditiis hic cupiditate illo nam assumenda reprehenderit suscipit dolorum.</p>     
+            </div>
+          </div>  
+        </div>
+        <div class="container" style="height: 100vh"></div>
+      </div>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.hero').on('wheel', function(e){
+                if( e.originalEvent.deltaY < 0 ){
+                    $('.hero, .content').addClass('scrolled');
+                    return false;
+                }
+            });
+            
+            $('.sd').click(function(){
+                $('.hero, .content').addClass('scrolled');
+            });
+        
+            $(window).on('wheel', function(e){
+                if( $('.hero.scrolled').length ){
+                    if( $(window).scrollTop() == 0 && e.originalEvent.deltaY > 0 ){
+                        $('.hero, .content').removeClass('scrolled');
+                    }
+                }
+            });
+        });
+        
+    </script>
+
+</body>
+</html>

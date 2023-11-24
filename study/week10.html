@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 10</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- aos -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/base.css" rel="stylesheet" />
+    <link href="./week3.css" rel="stylesheet" />
+</head>
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html"><img src="../../assets/img/Group4.png" alt="..." /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="../study.html">Study</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../technology.html">Technology</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../trend.html">Trend</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--내용-->
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-4">
+                <div id="list-example" class="list-group">
+                    <a class="list-group-item list-group-item-action" href="">Week 1</a>
+                    <a class="list-group-item list-group-item-action" href="./week2.html">Week 2</a>
+                    <a class="list-group-item list-group-item-action" href="./week3.html">Week 3</a>
+                    <a class="list-group-item list-group-item-action" href="./week4.html">Week 4</a>
+                    <a class="list-group-item list-group-item-action" href="./week5.html">Week 5</a>
+                    <a class="list-group-item list-group-item-action" href="./week6.html">Week 6</a>
+                    <a class="list-group-item list-group-item-action" href="./week7.html">Week 7</a>
+                    <a class="list-group-item list-group-item-action" href="./week8.html">Midterm Examination</a>
+                    <a class="list-group-item list-group-item-action" href="./week9.html">Week 9</a>
+                    <a class="list-group-item list-group-item-action" href="./week10.html">Week 10</a>
+                    <a class="list-group-item list-group-item-action" href="./week11.html">Week 11</a>
+                    <a class="list-group-item list-group-item-action" href="./week12.html">Week 12</a>
+                    <a class="list-group-item list-group-item-action" href="./week13.html">Week 13</a>
+                    <a class="list-group-item list-group-item-action" href="./week14.html">Week 14</a>
+                    <a class="list-group-item list-group-item-action" href="./week15.html">Week 15</a>
+                    <a class="list-group-item list-group-item-action" href="./week16.html">Final Examination</a>
+                </div>
+            </div>
+            <div class="col-8">
+                <article id="025cbf22-da24-4c2d-8f7b-dffa67cc119b" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">⛅</span></div><h1 class="page-title">10주차</h1><p class="page-description"></p></header><div class="page-body"><nav id="19a7528e-7ed1-4e40-93ef-333a888e6bb1" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e8476be5-8feb-4ab2-ad9c-dd054b6aef04">AWS Lambda Exercise</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#65a5a0f1-054d-4176-8780-eef108d89400">Serverless</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#21ea3f0e-d34e-44ca-818c-46661733827d">Lambda</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ac002eaf-f1f6-4a7d-b3e1-02dc1a1f29c9">장단점</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5251cf92-6641-46a3-a023-fa79f4f29902">AWS Practice - RDS</a></div></nav><h1 id="e8476be5-8feb-4ab2-ad9c-dd054b6aef04" class="">AWS Lambda Exercise</h1><h2 id="65a5a0f1-054d-4176-8780-eef108d89400" class="">Serverless</h2><ul id="f00cafdb-f771-4321-90c0-7d12a00f09b6" class="bulleted-list"><li style="list-style-type:disc">관리할 서버가 없다.</li></ul><ul id="5d53b6ed-bcbe-4620-9b58-e1f4c0c1abfe" class="bulleted-list"><li style="list-style-type:disc">서버 인프라를 구축 운영하지 않고도 코드 배포만으로 backend application을 구축 할 수 있는 architecture</li></ul><ul id="ce5060eb-86a1-4c62-b435-12296122fbeb" class="bulleted-list"><li style="list-style-type:disc">서비스 자체에 집중 가능</li></ul><p id="05ab2832-3c37-4f2c-8d53-a38061723248" class="">
+                </p><h2 id="21ea3f0e-d34e-44ca-818c-46661733827d" class="">Lambda</h2><ul id="0965d72d-73f1-4e34-8568-affb184d0b9f" class="bulleted-list"><li style="list-style-type:disc">서버 실행 없이 코드를 실행시켜주는 computing service</li></ul><ul id="1f7bb82f-4734-4fad-98fa-b340639cf68f" class="bulleted-list"><li style="list-style-type:disc">code로 이루어진 function 실행</li></ul><ul id="c0e1e638-e2a5-42e4-a120-3de57604ad9c" class="bulleted-list"><li style="list-style-type:disc">function = lambda function → <mark class="highlight-yellow_background">특정 event가 발생하면 실행됨</mark></li></ul><p id="34ff6eff-4df4-4c36-9e1a-0c367b070d68" class="">
+                </p><h2 id="ac002eaf-f1f6-4a7d-b3e1-02dc1a1f29c9" class="">장단점</h2><ul id="192cfb4b-7280-4a8d-913a-fdc2f427520a" class="bulleted-list"><li style="list-style-type:disc">서버 고민 없음</li></ul><ul id="a1b5a843-f8b8-4af0-a436-90d81031ffea" class="bulleted-list"><li style="list-style-type:disc">자동 auto scaling → 개발 생산성 (빠르게 개발)</li></ul><ul id="550203af-1293-4c96-83ac-41e81b0e37d6" class="bulleted-list"><li style="list-style-type:disc">사용한 만큼 비용 (초 단위)</li></ul><ul id="4eff45fa-6d53-4ed6-a4b5-b14a503aa4c4" class="bulleted-list"><li style="list-style-type:disc">Running time 제한 : 최대 15분</li></ul><p id="f2a19c7f-9cf1-48fb-a755-08cb0527a100" class="">
+                </p><h1 id="5251cf92-6641-46a3-a023-fa79f4f29902" class="">AWS Practice - RDS</h1><figure id="72a99573-5764-4a75-a1f1-099db055b058" class="image"><img style="width:687px" src="../assets/img/study/10week/Untitled.png"/></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>    
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer-->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-2">Copyright &copy; GAHYEONLEE LEE 2023</div>
+                <div class="col-lg-12 text-center">
+                    <img src="../../assets/img/Group2.png" style="width: 10rem;" alt="..." />
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
+        })
+    </script>
+</body>
+</html>

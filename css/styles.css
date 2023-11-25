@@ -10999,7 +10999,7 @@ header.masthead .masthead-heading {
   justify-content: center;
 }
 
-/* advamtage */
+/* advantage */
 .advantage-section {
   background-image: url('../assets/img/cloud2.jpg'); /* 이미지 파일의 경로로 변경하세요 */
   background-size: cover; /* 화면에 꽉 차도록 이미지 크기 조절 */
@@ -11012,6 +11012,31 @@ header.masthead .masthead-heading {
   justify-content: center;
 }
 
+/* type */
+.type-section{
+  background-image: url('../assets/img/cloud11.avif'); /* 이미지 파일의 경로로 변경하세요 */
+  background-size: cover; /* 화면에 꽉 차도록 이미지 크기 조절 */
+  background-position: center; /* 이미지를 가운데로 정렬 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 없음 */
+  color: #ffffff; /* 텍스트 색상을 이미지와 대조되도록 설정 */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* example */
+.example-section{
+  background-image: url('../assets/img/cloud3.avif'); /* 이미지 파일의 경로로 변경하세요 */
+  background-size: cover; /* 화면에 꽉 차도록 이미지 크기 조절 */
+  background-position: center; /* 이미지를 가운데로 정렬 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 없음 */
+  color: #ffffff; /* 텍스트 색상을 이미지와 대조되도록 설정 */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 #portfolio .portfolio-item {
   max-width: 26rem;

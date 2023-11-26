@@ -77,20 +77,19 @@
                 
                 <!--댓글-->
                 <div class="container mt-5 mb-5">
-                    <div id="comments-container">
-                        <!-- 댓글을 표시할 공간 -->
-                    </div>
-                </div>
-                <div class="container mt-5 mb-5">
-                    <form action="../process_data.php" method="POST" accept-charset="UTF-8">
+                    <form id="contentForm">
                         <label for="week">Week:</label>
                         <input type="text" name="week" value="2" readonly>
                         
                         <label for="content">Content:</label>
                         <textarea name="content" rows="4" required></textarea>
                         
-                        <input type="submit" value="Submit">
+                        <input type="button" value="Submit" onclick="submitContent()">
                     </form>
+                </div>
+                <!-- 댓글을 표시할 div -->
+                <div class="container mt-5 mb-5">
+                    <div id="commentSection"></div>
                 </div>
             </div>
         </div>
@@ -120,17 +119,26 @@
     </script>
     <script>
         // jQuery를 사용하여 AJAX 요청을 보냅니다.
-        $.ajax({
-            type: "GET",
-            url: "get_comments.php", // PHP 파일의 경로
-            data: { week: "2" }, // 주차를 전달합니다.
-            success: function (response) {
-                // 성공적으로 데이터를 받아왔을 때 실행되는 부분
-                $("#comments-container").html(response);
-            },
-            error: function (error) {
-                console.log(error);
-            }
+        function submitContent() {
+            var formData = $("#contentForm").serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "process_data.php", // 데이터를 처리하는 PHP 파일의 경로
+                data: formData,
+                success: function(response) {
+                    // 서버에서 받은 데이터를 commentSection에 표시
+                    $("#commentSection").html(response);
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+        }
+
+        // 페이지 로드 시 초기 댓글을 표시
+        $(document).ready(function() {
+            submitContent();
         });
     </script>
 </body>

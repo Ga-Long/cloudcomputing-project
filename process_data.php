@@ -25,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Display table data
-$week = mysqli_real_escape_string($connection, $_GET['week']);
-$result = mysqli_query($connection, "SELECT `Week`, `Content` FROM WeekContent WHERE week = '$week'");
+$week = mysqli_real_escape_string($connection, $_POST['week']);
+$result = mysqli_query($connection, "SELECT * FROM WeeksContent WHERE Week = '$week'");
 
 echo "<table border='1'>
 <tr>
@@ -42,7 +42,6 @@ while ($query_data = mysqli_fetch_row($result)) {
 }
 
 echo "</table>";
-
 
 // Clean up
 mysqli_free_result($result);

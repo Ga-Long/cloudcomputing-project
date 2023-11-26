@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $week = mysqli_real_escape_string($connection, $_POST['week']);
 $result = mysqli_query($connection, "SELECT * FROM WeeksContent WHERE Week = '$week'");
 
-echo "<table border='1'>
+echo "<table class='table' border='1'>
 <tr>
 <th>Week</th>
 <th>Content</th>

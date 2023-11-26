@@ -80,9 +80,6 @@
                 <!--댓글-->
                 <div class="container mt-5 mb-5">
                     <form id="contentForm">
-                        <label for="week">Week:</label>
-                        <input type="text" name="week" value="2" readonly>
-                        
                         <label for="content">Content:</label>
                         <textarea name="content" rows="4" required></textarea>
                         
@@ -123,6 +120,8 @@
         // jQuery를 사용하여 AJAX 요청을 보냅니다.
         function submitContent() {
             var formData = $("#contentForm").serialize();
+            // week 값을 추가
+            formData += "&week=2";
 
             $.ajax({
                 type: "POST",

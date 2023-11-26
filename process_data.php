@@ -25,17 +25,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Display table data
-$result = mysqli_query($connection, "SELECT * FROM WeeksContent");
+$week = mysqli_real_escape_string($connection, $_GET['week']);
+$result = mysqli_query($connection, "SELECT * FROM WeekContent WHERE week = '$week'");
 
-echo "<h2>Week Contents</h2>";
-echo "<table border='1' cellpadding='2' cellspacing='2'>";
-echo "<tr><td>Week</td><td>Content</td></tr>";
+echo "<table border='1'>
+<tr>
+<th>Week</th>
+<th>Content</th>
+</tr>";
 
 while ($query_data = mysqli_fetch_row($result)) {
-    echo "<tr><td>", $query_data[1], "</td><td>", $query_data[2], "</td></tr>";
+    echo "<tr>";
+    echo "<td>", $query_data[0], "</td>",
+    "<td>", $query_data[1], "</td>";
+    echo "</tr>";
 }
 
 echo "</table>";
+
+mysqli_free_result($result);
+mysqli_close($connection);
 
 // Clean up
 mysqli_free_result($result);

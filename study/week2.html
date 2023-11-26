@@ -77,6 +77,11 @@
                 
                 <!--댓글-->
                 <div class="container mt-5 mb-5">
+                    <div id="comments-container">
+                        <!-- 댓글을 표시할 공간 -->
+                    </div>
+                </div>
+                <div class="container mt-5 mb-5">
                     <form action="../process_data.php" method="POST" accept-charset="UTF-8">
                         <label for="week">Week:</label>
                         <input type="text" name="week" value="2" readonly>
@@ -112,6 +117,21 @@
         AOS.init({
             duration: 1200,
         })
+    </script>
+    <script>
+        // jQuery를 사용하여 AJAX 요청을 보냅니다.
+        $.ajax({
+            type: "GET",
+            url: "get_comments.php", // PHP 파일의 경로
+            data: { week: "2" }, // 주차를 전달합니다.
+            success: function (response) {
+                // 성공적으로 데이터를 받아왔을 때 실행되는 부분
+                $("#comments-container").html(response);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
     </script>
 </body>
 </html>

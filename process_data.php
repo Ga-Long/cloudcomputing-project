@@ -1,5 +1,5 @@
 <?php
-include "../inc/dbinfo.inc";
+include "../../inc/dbinfo.inc";
 
 // Connect to MySQL and select the database
 $connection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);
@@ -30,7 +30,7 @@ echo "<table border='1' cellpadding='2' cellspacing='2'>";
 echo "<tr><td>Week</td><td>Content</td></tr>";
 
 while ($query_data = mysqli_fetch_row($result)) {
-    echo "<tr><td>", $query_data[0], "</td><td>", $query_data[1], "</td></tr>";
+    echo "<tr><td>", $query_data[1], "</td><td>", $query_data[2], "</td></tr>";
 }
 
 echo "</table>";

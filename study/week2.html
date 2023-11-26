@@ -143,12 +143,19 @@
                     console.log("Error:", error);
                 }
             });
+
+             // 전송 후 텍스트 영역 비우기
+            clearContent();
         }
 
         // 페이지 로드 시 초기 댓글을 표시
         $(document).ready(function() {
             submitContent();
         });
+        
+        function clearContent() {
+            document.getElementById('content').value = ''; // 또는 $('#content').val('');
+        }
     </script>
 </body>
 </html>

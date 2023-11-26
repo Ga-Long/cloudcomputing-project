@@ -30,13 +30,15 @@ $result = mysqli_query($connection, "SELECT * FROM WeeksContent WHERE Week = '$w
 
 echo "<table class='table' border='1'>
 <tr>
-<th>Week</th>
+<th>NO.</th>
 <th>Content</th>
 </tr>";
 
+$index = 1; // week 번호를 나타내는 변수
+
 while ($query_data = mysqli_fetch_row($result)) {
     echo "<tr>";
-    echo "<td>", $query_data[1], "</td>",
+    echo "<td>", $index++, "</td>",
     "<td>", $query_data[2], "</td>";
     echo "</tr>";
 }

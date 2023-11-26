@@ -36,15 +36,13 @@ echo "<table border='1'>
 
 while ($query_data = mysqli_fetch_row($result)) {
     echo "<tr>";
-    echo "<td>", $query_data[0], "</td>",
-    "<td>", $query_data[1], "</td>";
+    echo "<td>", $query_data[1], "</td>",
+    "<td>", $query_data[2], "</td>";
     echo "</tr>";
 }
 
 echo "</table>";
 
-mysqli_free_result($result);
-mysqli_close($connection);
 
 // Clean up
 mysqli_free_result($result);

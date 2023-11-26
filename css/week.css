@@ -81,10 +81,10 @@ hr {
 	background: transparent;
 	display: block;
 	width: 100%;
-	height: 1px;
+	height: 30px;
 	visibility: visible;
 	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+	border-bottom: 1px solid #41464b;
 }
 
 img {

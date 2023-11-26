@@ -78,13 +78,19 @@
                 </p><h3 id="daba3531-1830-4fcc-8453-e28d9eba783d" class="">개발과 운영의 통합</h3></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
                 
                 <!--댓글-->
+                <hr>
                 <div class="container mt-5 mb-5">
-                    <form id="contentForm">
-                        <label for="content">Content:</label>
-                        <textarea name="content" rows="4" required></textarea>
-                        
-                        <input type="button" value="Submit" onclick="submitContent()">
-                    </form>
+                    <div class="card my-4">
+                        <h5 class="card-header">Leave a Comment:</h5>
+                        <div class="card-body">
+                            <form id="contentForm">
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control mb-3" rows="4" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="submitContent()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- 댓글을 표시할 div -->
                 <div class="container mt-5 mb-5">

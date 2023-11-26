@@ -17,6 +17,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../../css/base.css" rel="stylesheet" />
     <link href="../css/week.css" rel="stylesheet" />
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -74,6 +76,23 @@
                 </p><h3 id="3ae40544-7078-4a99-9ed7-c620107aa4d7" class="">IAM 역할</h3><ul id="db3ef117-b2a5-44a7-9079-802208f41920" class="bulleted-list"><li style="list-style-type:disc">시나리오<ul id="7b5d2c87-e1a4-462d-9ba4-a3c0a09d4e04" class="bulleted-list"><li style="list-style-type:circle">EC2 인스턴스에서 실행되는 애플리케이션에 S3 버킷에 대한 액세스 권한이 필요한 경우</li></ul></li></ul><ul id="00398506-4bfc-413f-a5ae-09001965e48b" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">솔루션</mark><ul id="8a0c58f0-94e5-4669-b686-13b5f36aff66" class="bulleted-list"><li style="list-style-type:circle">S3 버킷에 대한 액세스 권한을 부여하는 <mark class="highlight-red"><span style="border-bottom:0.05em solid"><strong>IAM 정책 정의</strong></span></mark></li></ul><ul id="28783c39-592a-465d-b0f4-ef3cd5e229c1" class="bulleted-list"><li style="list-style-type:circle"><strong><mark class="highlight-red"><span style="border-bottom:0.05em solid">정책을 역할에 연결</span></mark></strong></li></ul><ul id="584a8ad1-66b6-43c5-8e26-2313f0804647" class="bulleted-list"><li style="list-style-type:circle">EC2 인스턴스가 이 역할을 수임하는 것을 허용</li></ul></li></ul><p id="2ed7f5cc-9a9f-4252-ab5c-80d6774314c0" class="">
                 </p><h3 id="0a7ecec8-008d-4174-b76c-9fb767f8e9a7" class="">Root 사용자 vs IAM 사용자</h3><ul id="74c15176-90c5-4e9e-97f8-9373d6b65c7e" class="bulleted-list"><li style="list-style-type:disc">모범 사례<ul id="ca2bf152-ca40-4643-a062-fe64d45e329c" class="bulleted-list"><li style="list-style-type:circle">필요한 경우를 제외하고 루트 사용자를 사용하지 않음</li></ul></li></ul><ul id="39501259-a10a-4d51-87d5-992c20d3d60e" class="bulleted-list"><li style="list-style-type:disc">루트 사용자<ul id="c4b77496-87b5-4497-8b77-1cb9da26bc0e" class="bulleted-list"><li style="list-style-type:circle">루트 사용자 암호 변경</li></ul><ul id="58b2ae81-46a6-4695-8674-efa663d2595d" class="bulleted-list"><li style="list-style-type:circle">AWS support plan 변경</li></ul><ul id="c99280b7-8aa4-42d8-90c1-20a05cde334f" class="bulleted-list"><li style="list-style-type:circle">IAM 사용자 권한 복원</li></ul><ul id="2319930d-4669-41f5-804b-b45dcbfd36d1" class="bulleted-list"><li style="list-style-type:circle">계정 설정 변경 등등</li></ul></li></ul><p id="12d5734b-b0b3-4d73-be1b-f0131ffc1ab3" class="">
                 </p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>        
+            
+                <!--댓글-->
+                <div class="container mt-5 mb-5">
+                    <form id="contentForm">
+                        <label for="week">Week:</label>
+                        <input type="text" name="week" value="3" readonly>
+                        
+                        <label for="content">Content:</label>
+                        <textarea name="content" rows="4" required></textarea>
+                        
+                        <input type="button" value="Submit" onclick="submitContent()">
+                    </form>
+                </div>
+                <!-- 댓글을 표시할 div -->
+                <div class="container mt-5 mb-5">
+                    <div id="commentSection"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -99,6 +118,30 @@
         AOS.init({
             duration: 1200,
         })
+    </script>
+    <script>
+        // jQuery를 사용하여 AJAX 요청을 보냅니다.
+        function submitContent() {
+            var formData = $("#contentForm").serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "../process_data.php", // 데이터를 처리하는 PHP 파일의 경로
+                data: formData,
+                success: function(response) {
+                    // 서버에서 받은 데이터를 commentSection에 표시
+                    $("#commentSection").html(response);
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+        }
+
+        // 페이지 로드 시 초기 댓글을 표시
+        $(document).ready(function() {
+            submitContent();
+        });
     </script>
 </body>
 </html>

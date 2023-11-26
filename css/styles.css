@@ -10988,7 +10988,7 @@ header.masthead .masthead-heading {
 }
 /*service*/
 .introduce-section {
-  background-image: url('../assets/img/introduce/cloud2.jpeg'); /* 이미지 파일의 경로로 변경하세요 */
+  background-image: url('../assets/img/cloud2.jpeg'); /* 이미지 파일의 경로로 변경하세요 */
   background-size: cover; /* 화면에 꽉 차도록 이미지 크기 조절 */
   background-position: center; /* 이미지를 가운데로 정렬 */
   background-repeat: no-repeat; /* 배경 이미지 반복 없음 */

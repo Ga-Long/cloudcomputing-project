@@ -1,5 +1,6 @@
 <?php
 include "../../inc/dbinfo.inc";
+header('Content-Type: text/html; charset=UTF-8');
 
 // Connect to MySQL and select the database
 $connection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD);

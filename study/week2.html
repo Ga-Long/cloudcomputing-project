@@ -74,6 +74,19 @@
                 </p></li></ul><h3 id="384fbbcb-309b-40e1-8389-5b88874f7ff8" class="">스토리지 기술</h3><ul id="49ef8ee9-f3cd-42b5-a5da-a32e7b01c200" class="bulleted-list"><li style="list-style-type:disc">Block storage<ul id="34862516-f070-4c47-9018-0cb5524d809b" class="bulleted-list"><li style="list-style-type:circle">일정한 크기의 block으로 나눈 logical volume을 block 단위로 액세스</li></ul></li></ul><ul id="b364e29a-5b05-4864-b462-31c5d0fc57fd" class="bulleted-list"><li style="list-style-type:disc">File storage<ul id="c045ff18-a656-432a-b032-31658e5f9e3a" class="bulleted-list"><li style="list-style-type:circle">파일 단위로 저장</li></ul></li></ul><ul id="a9544b9c-ce2e-4b26-b483-a5d78ef2ee61" class="bulleted-list"><li style="list-style-type:disc">Object storage<ul id="b68a3b91-2129-491d-80e0-47ed11c8af01" class="bulleted-list"><li style="list-style-type:circle">데이터를 객체 단위로 처리</li></ul><ul id="c9dd736e-fcc8-4ad5-8e4c-4da199c3bda4" class="bulleted-list"><li style="list-style-type:circle">HTTP 프로토콜 기반의 REST(Representational State Transfer) 형식의 API 사용</li></ul></li></ul><h3 id="195905f1-5259-4a35-966b-de05c5a3eb5b" class="">API </h3><p id="d455fb8c-27f7-42fd-bd40-9b4bb9fb881e" class="">: 프로그램이 가진 기능이나 리소스를 외부의 다른 프로그램이 호출하여 이용하기 위한 명령이나 함수, 데이터 형식 등을 정한 규약</p><p id="789f1e76-fd76-497b-8194-beb7d19baad8" class="">
                 </p><h3 id="8e593f59-8cd5-4dee-8e73-2fe082bc7a8d" class="">클라우드 네이티브 아키텍처</h3><p id="031a70ec-539d-47e9-9a62-03e81a1f7a75" class="">
                 </p><h3 id="daba3531-1830-4fcc-8453-e28d9eba783d" class="">개발과 운영의 통합</h3></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+                
+                <!--댓글-->
+                <div class="container mt-5 mb-5">
+                    <form action="../process_data.php" method="POST">
+                        <label for="week">Week:</label>
+                        <input type="text" name="week" value="2" readonly>
+                        
+                        <label for="content">Content:</label>
+                        <textarea name="content" rows="4" required></textarea>
+                        
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -17,6 +17,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../../css/base.css" rel="stylesheet" />
     <link href="../css/week.css" rel="stylesheet" />
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -61,6 +63,30 @@
             </div>
             <div class="col-8">
                 ...  📢 프로젝트 발표  
+
+
+
+                <!--댓글-->
+                <hr>
+                <div class="container mt-5 mb-5">
+                    <div class="card my-4">
+                        <h5 class="card-header">Leave a Comment:</h5>
+                        <div class="card-body">
+                            <form id="contentForm">
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control mb-3" rows="4" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="submitContent()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- 댓글을 표시할 div -->
+                <div class="container mt-5 mb-5">
+                    <div id="commentSection">
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -86,6 +112,39 @@
         AOS.init({
             duration: 1200,
         })
+    </script>
+    <script>
+        // jQuery를 사용하여 AJAX 요청을 보냅니다.
+        function submitContent() {
+            var formData = $("#contentForm").serialize();
+            // week 값을 추가
+            formData += "&week=14";
+
+            $.ajax({
+                type: "POST",
+                url: "../process_data.php", // 데이터를 처리하는 PHP 파일의 경로
+                data: formData,
+                success: function(response) {
+                    // 서버에서 받은 데이터를 commentSection에 표시
+                    $("#commentSection").html(response);
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+
+             // 전송 후 텍스트 영역 비우기
+            clearContent();
+        }
+
+        // 페이지 로드 시 초기 댓글을 표시
+        $(document).ready(function() {
+            submitContent();
+        });
+        
+        function clearContent() {
+            document.getElementById('content').value = ''; // 또는 $('#content').val('');
+        }
     </script>
 </body>
 </html>

@@ -17,6 +17,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../../css/base.css" rel="stylesheet" />
     <link href="../css/week.css" rel="stylesheet" />
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -73,6 +75,28 @@
                 </p></li></ul><h3 id="aa4f5444-f7c7-4abc-b2e3-a5cc007f032f" class=""><strong><strong>Application Load Balancer
                 </strong></strong></h3><ul id="614bba5f-c125-410f-8a79-5ef67b816fd8" class="bulleted-list"><li style="list-style-type:disc">load balancer: single point of contact for clients</li></ul><ul id="43f4546f-1461-48c8-83b8-41e6c756b45f" class="bulleted-list"><li style="list-style-type:disc">listener<ul id="5b9169f5-79ec-45d9-b123-e1eaf29ac680" class="bulleted-list"><li style="list-style-type:circle">clinet의 접속 요청 검사 → target group으로 보냄</li></ul><ul id="b0c18847-8eb6-46ee-a7a1-5a041c3a8faa" class="bulleted-list"><li style="list-style-type:circle">rule을 정의: target group, condition, prority</li></ul></li></ul><ul id="6bf2cff7-f077-45f0-8288-d8e4aa730f53" class="bulleted-list"><li style="list-style-type:disc">target group: 등록된 target으로 요청을 보냄 (protocol, port 이용)</li></ul><ul id="694e0b66-8fbf-48ed-8746-4a2467dea79b" class="bulleted-list"><li style="list-style-type:disc">OSI layer의 7번째 application layer에서 작동: HTTP/HTTPS</li></ul><ul id="3fb40737-d4a9-4a44-8794-de9ddc32285b" class="bulleted-list"><li style="list-style-type:disc">● request → listener rule 결정 → target group에서 target 결정</li></ul><p id="09260d75-901c-4341-9abf-2247cd9fda88" class="">
                 </p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+            
+                <!--댓글-->
+                <hr>
+                <div class="container mt-5 mb-5">
+                    <div class="card my-4">
+                        <h5 class="card-header">Leave a Comment:</h5>
+                        <div class="card-body">
+                            <form id="contentForm">
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control mb-3" rows="4" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="submitContent()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- 댓글을 표시할 div -->
+                <div class="container mt-5 mb-5">
+                    <div id="commentSection">
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -98,6 +122,39 @@
         AOS.init({
             duration: 1200,
         })
+    </script>
+    <script>
+        // jQuery를 사용하여 AJAX 요청을 보냅니다.
+        function submitContent() {
+            var formData = $("#contentForm").serialize();
+            // week 값을 추가
+            formData += "&week=6";
+
+            $.ajax({
+                type: "POST",
+                url: "../process_data.php", // 데이터를 처리하는 PHP 파일의 경로
+                data: formData,
+                success: function(response) {
+                    // 서버에서 받은 데이터를 commentSection에 표시
+                    $("#commentSection").html(response);
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+
+             // 전송 후 텍스트 영역 비우기
+            clearContent();
+        }
+
+        // 페이지 로드 시 초기 댓글을 표시
+        $(document).ready(function() {
+            submitContent();
+        });
+        
+        function clearContent() {
+            document.getElementById('content').value = ''; // 또는 $('#content').val('');
+        }
     </script>
 </body>
 </html>

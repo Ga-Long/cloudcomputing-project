@@ -17,6 +17,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../../css/base.css" rel="stylesheet" />
     <link href="../css/week.css" rel="stylesheet" />
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -88,6 +90,28 @@
                 </p><h2 id="84ab2bb3-9b3f-4e83-9ef5-59d0461ffd30" class="">사용 사례 - 백엔드</h2><ul id="ffef0bc4-4c94-4821-8b21-60f0685aadd8" class="bulleted-list"><li style="list-style-type:disc">IOT 백엔드 : 웹, 모바일, 사물 인터넷 및 타사 API 요청</li></ul><figure id="320bfe3a-6e06-45e4-b516-e1ca3d847a6e" class="image"><img style="width:703px" src="../assets/img/study/9week/Untitled 7.png"/></figure><p id="ffcf5b32-2db0-4fb9-9787-f974c78220f3" class="">
                 </p><ul id="a9cded04-d236-402b-b879-bde5ed231757" class="bulleted-list"><li style="list-style-type:disc">모바일 백엔드 : API 요청을 인증 및 처리하도록 백엔드 구성 → 개인화된 앱 환경을 손 쉽게 생성할 수 있음</li></ul><ul id="5ba12e22-1a51-4c77-8fe1-63952b2cd4ad" class="bulleted-list"><li style="list-style-type:disc">Bustle : AWS Lambda와 Amazon API Gateway를 사용하여 Bustle iOS 앱 및 웹 사이트에 대해 서버리스 백엔드를 실행</li></ul><figure id="22c095e1-8fd9-4050-8116-dac2b7a1da79" class="image"><img style="width:709px" src="../assets/img/study/9week/Untitled 8.png"/></figure><p id="ee2cddf5-d5e2-4ef5-bdeb-17b3fbe06f21" class="">
                 </p><ul id="59ea8d2a-5155-4fb3-a495-34cfe686b464" class="bulleted-list"><li style="list-style-type:disc">웹 애플리케이션<ul id="1f7f2f39-8ae9-4856-818e-c59effc8c2a9" class="bulleted-list"><li style="list-style-type:circle">Lambda를 다른 AWS 서비스와 결합</li></ul><ul id="f974c808-e645-43cc-9ef2-d654401b586e" class="bulleted-list"><li style="list-style-type:circle">가용성 높은 구성에서 실행되는 강력한 웹 애플리케이션 구축 가능</li></ul></li></ul><figure id="476b1702-ca14-494d-a006-e4806d2b5dac" class="image"><img style="width:691px" src="../assets/img/study/9week/Untitled 9.png"/></figure><h2 id="4aa6881f-f0d4-4258-b707-28dd96f2f40c" class="">참고</h2><p id="165a367a-09cd-4dfc-be62-c0fb60df747f" class=""><a href="https://aws.amazon.com/ko/lambda/">https://aws.amazon.com/ko/lambda/</a></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+            
+                <!--댓글-->
+                <hr>
+                <div class="container mt-5 mb-5">
+                    <div class="card my-4">
+                        <h5 class="card-header">Leave a Comment:</h5>
+                        <div class="card-body">
+                            <form id="contentForm">
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control mb-3" rows="4" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="submitContent()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- 댓글을 표시할 div -->
+                <div class="container mt-5 mb-5">
+                    <div id="commentSection">
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -113,6 +137,39 @@
         AOS.init({
             duration: 1200,
         })
+    </script>
+    <script>
+        // jQuery를 사용하여 AJAX 요청을 보냅니다.
+        function submitContent() {
+            var formData = $("#contentForm").serialize();
+            // week 값을 추가
+            formData += "&week=9";
+
+            $.ajax({
+                type: "POST",
+                url: "../process_data.php", // 데이터를 처리하는 PHP 파일의 경로
+                data: formData,
+                success: function(response) {
+                    // 서버에서 받은 데이터를 commentSection에 표시
+                    $("#commentSection").html(response);
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+
+             // 전송 후 텍스트 영역 비우기
+            clearContent();
+        }
+
+        // 페이지 로드 시 초기 댓글을 표시
+        $(document).ready(function() {
+            submitContent();
+        });
+        
+        function clearContent() {
+            document.getElementById('content').value = ''; // 또는 $('#content').val('');
+        }
     </script>
 </body>
 </html>

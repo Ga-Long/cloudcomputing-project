@@ -17,6 +17,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../../css/base.css" rel="stylesheet" />
     <link href="../css/week.css" rel="stylesheet" />
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -77,6 +79,28 @@
                 스형 관계형 데이터베이스 (DaaS)</li></ul><ul id="4d958ac4-f383-4278-9c84-c8cf00e39ce8" class="bulleted-list"><li style="list-style-type:disc">Azure Database for MySQL: 앱 개발자용 관리형 MySQL 데이터베이스 서비스</li></ul><ul id="0139ca2c-c704-43d5-b723-afb3fd3e0325" class="bulleted-list"><li style="list-style-type:disc">Azure Database for PostgreSQL: 오픈 소스 Postgres 데이터베이스 엔진 기반 관
                 계형 데이터베이스 서비스</li></ul><h3 id="ee417ed2-00f8-4e98-bcf4-22bb244673ac" class="">Azure SQL Managed Instance</h3><ul id="d0aacde0-494c-4d7f-9dcd-13a0b5fac591" class="bulleted-list"><li style="list-style-type:disc">SQL server 고객이 최소한의 애플리케이션과 데이터베이스 변경으로 lift-and-shift 방식으로 on-premise application을 클라우드로 migration 할 수 있게 함</li></ul><ul id="8c2b1c12-bdca-4ee9-9c65-21111e58ff33" class="bulleted-list"><li style="list-style-type:disc">항상 최신 상태로 유지되는 관리형 PaaS</li></ul><ul id="465b1ce7-de28-463d-9ab8-740a4a6fc42e" class="bulleted-list"><li style="list-style-type:disc">모든 PaaS 기능 제공 – 자동 패치, 버전 업데이트, 자동 백업, 고가용성 등</li></ul><p id="a9064d68-5738-4f26-bd93-44a1475c4682" class="">
                 </p><h2 id="9cf89832-2f04-4b85-aa0b-bc4b6000273b" class="">Azure Martketplace</h2><ul id="ffc626dc-79f8-4a30-9a49-f5392e10f2d5" class="bulleted-list"><li style="list-style-type:disc">다양한 서비스 공급자의 Azure 인증 받은 애플리케이션과 서비스 제공<ul id="7548a4f4-1737-4852-8e8f-f845359f2494" class="bulleted-list"><li style="list-style-type:circle">가상 머신과 데이터베이스 이미지</li></ul><ul id="dec948c8-923b-40fa-a7c2-eda7825dc3b8" class="bulleted-list"><li style="list-style-type:circle">애플리케이션 빌드/배포용 소프트웨어</li></ul><ul id="7cc25905-7959-4552-9251-5f6fbe31bcd2" class="bulleted-list"><li style="list-style-type:circle">개발자 도구</li></ul><ul id="ba703a5e-38a7-4198-a997-674fbd17a2c0" class="bulleted-list"><li style="list-style-type:circle">10000개 이상</li></ul></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+            
+                <!--댓글-->
+                <hr>
+                <div class="container mt-5 mb-5">
+                    <div class="card my-4">
+                        <h5 class="card-header">Leave a Comment:</h5>
+                        <div class="card-body">
+                            <form id="contentForm">
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control mb-3" rows="4" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="submitContent()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- 댓글을 표시할 div -->
+                <div class="container mt-5 mb-5">
+                    <div id="commentSection">
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -102,6 +126,39 @@
         AOS.init({
             duration: 1200,
         })
+    </script>
+    <script>
+        // jQuery를 사용하여 AJAX 요청을 보냅니다.
+        function submitContent() {
+            var formData = $("#contentForm").serialize();
+            // week 값을 추가
+            formData += "&week=12";
+
+            $.ajax({
+                type: "POST",
+                url: "../process_data.php", // 데이터를 처리하는 PHP 파일의 경로
+                data: formData,
+                success: function(response) {
+                    // 서버에서 받은 데이터를 commentSection에 표시
+                    $("#commentSection").html(response);
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+
+             // 전송 후 텍스트 영역 비우기
+            clearContent();
+        }
+
+        // 페이지 로드 시 초기 댓글을 표시
+        $(document).ready(function() {
+            submitContent();
+        });
+        
+        function clearContent() {
+            document.getElementById('content').value = ''; // 또는 $('#content').val('');
+        }
     </script>
 </body>
 </html>

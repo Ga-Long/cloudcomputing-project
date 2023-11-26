@@ -78,20 +78,25 @@
                 </p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>        
             
                 <!--댓글-->
+                <hr>
                 <div class="container mt-5 mb-5">
-                    <form id="contentForm">
-                        <label for="week">Week:</label>
-                        <input type="text" name="week" value="3" readonly>
-                        
-                        <label for="content">Content:</label>
-                        <textarea name="content" rows="4" required></textarea>
-                        
-                        <input type="button" value="Submit" onclick="submitContent()">
-                    </form>
+                    <div class="card my-4">
+                        <h5 class="card-header">Leave a Comment:</h5>
+                        <div class="card-body">
+                            <form id="contentForm">
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control mb-3" rows="4" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="submitContent()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- 댓글을 표시할 div -->
                 <div class="container mt-5 mb-5">
-                    <div id="commentSection"></div>
+                    <div id="commentSection">
+                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -123,6 +128,8 @@
         // jQuery를 사용하여 AJAX 요청을 보냅니다.
         function submitContent() {
             var formData = $("#contentForm").serialize();
+            // week 값을 추가
+            formData += "&week=3";
 
             $.ajax({
                 type: "POST",
@@ -136,12 +143,19 @@
                     console.log("Error:", error);
                 }
             });
+
+             // 전송 후 텍스트 영역 비우기
+            clearContent();
         }
 
         // 페이지 로드 시 초기 댓글을 표시
         $(document).ready(function() {
             submitContent();
         });
+        
+        function clearContent() {
+            document.getElementById('content').value = ''; // 또는 $('#content').val('');
+        }
     </script>
 </body>
 </html>

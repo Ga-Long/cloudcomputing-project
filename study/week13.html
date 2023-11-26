@@ -17,6 +17,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../../css/base.css" rel="stylesheet" />
     <link href="../css/week.css" rel="stylesheet" />
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -70,6 +72,28 @@
                 </p><h2 id="2482a653-519e-457b-8436-ed1a72b121a1" class="">Machine Learning Services</h2><ul id="6640c880-8786-49ab-b1d4-0dd43a870781" class="bulleted-list"><li style="list-style-type:disc">Machine Learning Platform: machine learning APIs<ul id="3b70ebc6-9407-4730-8d38-4678f87a34d0" class="bulleted-list"><li style="list-style-type:circle">speech API</li></ul><ul id="78953d31-8fe8-4e6c-96cb-5675d65f7af8" class="bulleted-list"><li style="list-style-type:circle">translate API</li></ul><ul id="63bc2da8-664a-419c-8ab0-b13e991b3034" class="bulleted-list"><li style="list-style-type:circle">vision API</li></ul><ul id="c4411872-d6ab-422b-b7ec-7ba0c94c2c94" class="bulleted-list"><li style="list-style-type:circle">prediction API</li></ul><ul id="457d8d6b-d1c1-4b59-9557-fc8a8b15f953" class="bulleted-list"><li style="list-style-type:circle">natural language API</li></ul></li></ul><p id="e2c8175e-a02d-4fb0-8363-2f0b35e05743" class="">
                 </p><ul id="51f253e1-e237-4a59-8b48-195b1bf6658d" class="bulleted-list"><li style="list-style-type:disc">Cloud Machine Learning (Tensorflow) Service<ul id="e74ca06e-60be-48cc-9de0-de6cf408e32b" class="bulleted-list"><li style="list-style-type:circle">CloudML</li></ul><ul id="d6f995be-6f48-497b-821f-5a1a7c15ac5e" class="bulleted-list"><li style="list-style-type:circle">TPU를 이용하여 실행됨</li></ul><ul id="5ca692ef-c319-4ff1-9374-994066f9cc7c" class="bulleted-list"><li style="list-style-type:circle">자신만의 ML service를 개발하려는 사용자</li></ul></li></ul><p id="6e3e8739-b6c8-4d49-834d-331bcfd2f453" class="">
                 </p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+            
+                <!--댓글-->
+                <hr>
+                <div class="container mt-5 mb-5">
+                    <div class="card my-4">
+                        <h5 class="card-header">Leave a Comment:</h5>
+                        <div class="card-body">
+                            <form id="contentForm">
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control mb-3" rows="4" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="submitContent()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- 댓글을 표시할 div -->
+                <div class="container mt-5 mb-5">
+                    <div id="commentSection">
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -95,6 +119,39 @@
         AOS.init({
             duration: 1200,
         })
+    </script>
+    <script>
+        // jQuery를 사용하여 AJAX 요청을 보냅니다.
+        function submitContent() {
+            var formData = $("#contentForm").serialize();
+            // week 값을 추가
+            formData += "&week=13";
+
+            $.ajax({
+                type: "POST",
+                url: "../process_data.php", // 데이터를 처리하는 PHP 파일의 경로
+                data: formData,
+                success: function(response) {
+                    // 서버에서 받은 데이터를 commentSection에 표시
+                    $("#commentSection").html(response);
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+
+             // 전송 후 텍스트 영역 비우기
+            clearContent();
+        }
+
+        // 페이지 로드 시 초기 댓글을 표시
+        $(document).ready(function() {
+            submitContent();
+        });
+        
+        function clearContent() {
+            document.getElementById('content').value = ''; // 또는 $('#content').val('');
+        }
     </script>
 </body>
 </html>

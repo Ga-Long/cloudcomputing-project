@@ -17,6 +17,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../../css/base.css" rel="stylesheet" />
     <link href="../css/week.css" rel="stylesheet" />
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -66,6 +68,28 @@
                 </p><h1 id="330bc5d6-dea8-4f93-9a3a-f4917587a438" class="">CloudFront</h1><h2 id="a7aec5b3-0b90-49aa-b3a0-102dd0b819d8" class="">What?</h2><ul id="82d7b4ab-b486-4dbb-aea3-476fa31f8843" class="bulleted-list"><li style="list-style-type:disc">빠르고 안전한 글로벌 CDN 서비스</li></ul><ul id="5d4e97bf-d4ba-4a4b-841d-8a0adbe44e8d" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>엣지 로케이션</strong></mark>이라고 하는 데이터 센터의 전 세계 네트워크를 통해 콘텐츠 서비스 제공</li></ul><ul id="bf7e2e03-8166-4f9f-8ae3-8ec43b2be7f1" class="bulleted-list"><li style="list-style-type:disc">최종 사용자가 위치한 곳에 더욱 가깝게 콘텐츠를 전송할 수 있기 때문에 성능 향상</li></ul><ul id="b0d0f0fe-cf6a-4e2b-9ff9-443ff43436df" class="bulleted-list"><li style="list-style-type:disc">셀프 서비스 모델</li></ul><ul id="5ff2f8bf-af3b-4d5d-ba09-19f6f2d0276c" class="bulleted-list"><li style="list-style-type:disc">종량 과금제</li></ul><ul id="7c50c5be-ea62-49f7-9548-08291ecd60e8" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red"><strong>컨텐츠</strong></mark>를 캐싱하여 성능 가속</li></ul><ul id="a915e1f5-4c7f-49c9-a8df-c3a6ee8ac4b6" class="bulleted-list"><li style="list-style-type:disc">전세계 400개 이상의 엣지 로케이션 : 글로벌 서비스</li></ul><ul id="fe8bed40-33f6-493c-bd8c-b361dc49366c" class="bulleted-list"><li style="list-style-type:disc">AWS 서비스 → CloudFront간 <mark class="highlight-red"><strong>데이터 전송 무료</strong></mark></li></ul><ul id="726af5cb-6140-4a6c-9d61-e7c569048cd4" class="bulleted-list"><li style="list-style-type:disc">글로벌 고속 백본 네트워크 확보</li></ul><ul id="fede42d2-a512-4b40-8900-85b528cefa1b" class="bulleted-list"><li style="list-style-type:disc">DDos 방어 무료 제공</li></ul><figure id="1805b11e-dd82-49df-85bc-93bdd13ba56c" class="image"><img style="width:686px" src="../assets/img/study/5week/Untitled 3.png"/></figure><ul id="82e38cde-0277-4486-855b-d217e09b84b4" class="bulleted-list"><li style="list-style-type:disc">컨텐츠 보안</li></ul><p id="3e668de9-2ca2-487b-baa0-f83ee4c2acc7" class="">
                 </p><p id="438a3a02-a003-4813-88f1-9ea2991b0895" class="">
                 </p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+            
+                <!--댓글-->
+                <hr>
+                <div class="container mt-5 mb-5">
+                    <div class="card my-4">
+                        <h5 class="card-header">Leave a Comment:</h5>
+                        <div class="card-body">
+                            <form id="contentForm">
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control mb-3" rows="4" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="submitContent()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- 댓글을 표시할 div -->
+                <div class="container mt-5 mb-5">
+                    <div id="commentSection">
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -91,6 +115,39 @@
         AOS.init({
             duration: 1200,
         })
+    </script>
+    <script>
+        // jQuery를 사용하여 AJAX 요청을 보냅니다.
+        function submitContent() {
+            var formData = $("#contentForm").serialize();
+            // week 값을 추가
+            formData += "&week=5";
+
+            $.ajax({
+                type: "POST",
+                url: "../process_data.php", // 데이터를 처리하는 PHP 파일의 경로
+                data: formData,
+                success: function(response) {
+                    // 서버에서 받은 데이터를 commentSection에 표시
+                    $("#commentSection").html(response);
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+
+             // 전송 후 텍스트 영역 비우기
+            clearContent();
+        }
+
+        // 페이지 로드 시 초기 댓글을 표시
+        $(document).ready(function() {
+            submitContent();
+        });
+        
+        function clearContent() {
+            document.getElementById('content').value = ''; // 또는 $('#content').val('');
+        }
     </script>
 </body>
 </html>

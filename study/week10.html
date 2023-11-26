@@ -17,6 +17,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../../css/base.css" rel="stylesheet" />
     <link href="../css/week.css" rel="stylesheet" />
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -64,6 +66,28 @@
                 </p><h2 id="21ea3f0e-d34e-44ca-818c-46661733827d" class="">Lambda</h2><ul id="0965d72d-73f1-4e34-8568-affb184d0b9f" class="bulleted-list"><li style="list-style-type:disc">서버 실행 없이 코드를 실행시켜주는 computing service</li></ul><ul id="1f7bb82f-4734-4fad-98fa-b340639cf68f" class="bulleted-list"><li style="list-style-type:disc">code로 이루어진 function 실행</li></ul><ul id="c0e1e638-e2a5-42e4-a120-3de57604ad9c" class="bulleted-list"><li style="list-style-type:disc">function = lambda function → <mark class="highlight-yellow_background">특정 event가 발생하면 실행됨</mark></li></ul><p id="34ff6eff-4df4-4c36-9e1a-0c367b070d68" class="">
                 </p><h2 id="ac002eaf-f1f6-4a7d-b3e1-02dc1a1f29c9" class="">장단점</h2><ul id="192cfb4b-7280-4a8d-913a-fdc2f427520a" class="bulleted-list"><li style="list-style-type:disc">서버 고민 없음</li></ul><ul id="a1b5a843-f8b8-4af0-a436-90d81031ffea" class="bulleted-list"><li style="list-style-type:disc">자동 auto scaling → 개발 생산성 (빠르게 개발)</li></ul><ul id="550203af-1293-4c96-83ac-41e81b0e37d6" class="bulleted-list"><li style="list-style-type:disc">사용한 만큼 비용 (초 단위)</li></ul><ul id="4eff45fa-6d53-4ed6-a4b5-b14a503aa4c4" class="bulleted-list"><li style="list-style-type:disc">Running time 제한 : 최대 15분</li></ul><p id="f2a19c7f-9cf1-48fb-a755-08cb0527a100" class="">
                 </p><h1 id="5251cf92-6641-46a3-a023-fa79f4f29902" class="">AWS Practice - RDS</h1><figure id="72a99573-5764-4a75-a1f1-099db055b058" class="image"><img style="width:687px" src="../assets/img/study/10week/Untitled.png"/></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>    
+            
+                <!--댓글-->
+                <hr>
+                <div class="container mt-5 mb-5">
+                    <div class="card my-4">
+                        <h5 class="card-header">Leave a Comment:</h5>
+                        <div class="card-body">
+                            <form id="contentForm">
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control mb-3" rows="4" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="submitContent()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- 댓글을 표시할 div -->
+                <div class="container mt-5 mb-5">
+                    <div id="commentSection">
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -89,6 +113,39 @@
         AOS.init({
             duration: 1200,
         })
+    </script>
+    <script>
+        // jQuery를 사용하여 AJAX 요청을 보냅니다.
+        function submitContent() {
+            var formData = $("#contentForm").serialize();
+            // week 값을 추가
+            formData += "&week=10";
+
+            $.ajax({
+                type: "POST",
+                url: "../process_data.php", // 데이터를 처리하는 PHP 파일의 경로
+                data: formData,
+                success: function(response) {
+                    // 서버에서 받은 데이터를 commentSection에 표시
+                    $("#commentSection").html(response);
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+
+             // 전송 후 텍스트 영역 비우기
+            clearContent();
+        }
+
+        // 페이지 로드 시 초기 댓글을 표시
+        $(document).ready(function() {
+            submitContent();
+        });
+        
+        function clearContent() {
+            document.getElementById('content').value = ''; // 또는 $('#content').val('');
+        }
     </script>
 </body>
 </html>
